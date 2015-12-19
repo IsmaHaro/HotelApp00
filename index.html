@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HotelApp</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.inline-png-1.4.5.min.css">	
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons-1.4.5.min.css">	
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+</head>
+<body>
+ 	<div id="home" data-role="page">
+		<div data-role="header">
+			<h1>HotelApp</h1>
+			<a href="#" class="fecha">
+				
+			</a>
+		</div>
+		<div class="ui-content">
+			<ul data-role="listview" data-insert="true">
+				<li><a href="#nr1">Nueva Reserva</a></li>
+				<li><a href="#">Historial</a></li>
+				<li><a href="#privacidad">Privacidad</a></li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<span>Todos los derechos reservados</span>
+			<a href="#nosotros">Nosotros</a>
+		</div>
+	</div>
+ 
+	<div id="registro" data-role="page">
+		<div data-role="header">
+			<h1>Registro</h1>
+		</div>
+		<div class="ui-content">
+			<ul data-role="listview">
+				<li>
+					<input type="text" placeholder="Tu nombre" id="regNom">
+				</li>
+				<li>
+					<input type="email" placeholder="Tu email" id="regEmail">
+				</li>
+				<li>
+					<input type="tel" placeholder="Tu teléfono" id="regTel">
+				</li>
+				<li>
+					<a href="#">Tomar Foto</a>
+				</li>
+				<li id="fotoTomada">
+					
+				</li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="#" class="ui-btn-active">
+							Registrar
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="privacidad" data-role="page">
+		<div data-role="header">
+			<h1>Privacidad</h1>
+			<a href="#" data-rel="back">Atrás</a>
+		</div>
+		<div class="ui-content">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dignissimos reiciendis hic velit non quam exercitationem excepturi magnam, amet neque cumque voluptate magni enim sint odio culpa ut praesentium molestias.
+			</p>
+		</div>
+	</div>
+
+	<div id="nosotros" data-role="page">
+		<div data-role="header">
+			<h1>Nosotros</h1>
+			<a href="#" data-rel="back" class="ui-btn ui-btn-icon-left ui-icon-delete ui-btn-icon-notext ui-corner-all">
+				Atrás
+			</a>
+		</div>
+		<div class="ui-content">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non eum quia odio rem nam, adipisci exercitationem similique saepe, pariatur necessitatibus, magnam ratione praesentium? Saepe repellat, iste rerum nam nisi odio.
+			</p>
+		</div>
+	</div>
+
+	<div id="nr1" data-role="page">
+		<div data-role="header">
+			<h1>Reserva</h1>
+		</div>
+		<div class="ui-content">
+			<ul data-role="listview">
+				<li data-role="list-divider">
+					Selecciona el tipo de habitación
+				</li>
+				<li><a href="#">Sencilla</a></li>
+				<li><a href="#">Doble</a></li>
+				<li><a href="#">Suite</a></li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="#" data-rel="back">
+							Cancelar
+						</a>
+					</li>
+					<li>
+						<a href="#" class="ui-btn-active">
+							Siguiente
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="nr2" data-role="page">
+		<div data-role="header">
+			<h1>Reserva</h1>
+			<a href="#" data-rel="back" class="ui-btn ui-btn-icon-left ui-icon-delete ui-btn-icon-notext ui-corner-all">
+				Atrás
+			</a>
+		</div>
+		<div class="ui-content">
+			<ul data-role="listview">
+				<li data-role="list-divider">
+					Selecciona datos extras:
+				</li>
+				<li>
+					Personas:
+					<select id="resPer">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</li>
+				<li>
+					Habitaciones:
+					<select id="resHab">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</li>
+				<li>
+					Días:
+					<select id="resDias">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="#" class="ui-btn-active">
+							Reservar
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js">
+	</script>
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js">
+	</script>
+</body>
+</html>
