@@ -62,7 +62,7 @@ var fn = {
 				ft.start(foto);
 
 			}else{
-				navigator.notification.alert("Error al enviar datos al servidor");
+				navigator.notification.alert("Error al enviar datos al servidor, Mensaje: "+msg);
 			}
 		});
 	}
