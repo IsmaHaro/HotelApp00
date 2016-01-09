@@ -5,7 +5,7 @@ var fn = {
 			window.location.href = "#registro";
 		}
 
-		$("#registro ul a").tap(mc.start);
+		$("#registro ul[data-role  = listview] a").tap(mc.start);
 		$("#registro div[data-role = footer] a").tap(fn.registar);
 	},
 
