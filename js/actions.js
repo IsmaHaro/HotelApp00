@@ -24,7 +24,7 @@ var fn = {
 	registar: function(){
 		// OBTENER LOS DATOS
 		var nombre = $("#regNom").val();
-		var email  = $("#regMail").val();
+		var email  = $("#regEmail").val();
 		var tel    = $("#regTel").val();
 		var foto   = $("#fotoTomada").attr("rel");
 
