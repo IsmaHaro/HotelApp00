@@ -33,9 +33,9 @@ var fn = {
 			navigator.notification.alert("El nombre debe de ser valido");
 		}
 
-		if(typeof tel !== "number"){
-			navigator.notification.alert("El telefono debe de ser un número");	
-		}
+		// if(typeof tel !== "number"){
+		// 	navigator.notification.alert("El telefono debe de ser un número");	
+		// }
 
 		if(email == '' || foto == undefined || foto == ''){
 			navigator.notification.alert("El email y la foto son obligatorios");		
