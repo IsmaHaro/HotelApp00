@@ -5,12 +5,50 @@ var fn = {
 			window.location.href = "#registro";
 		}
 
+		// BOTONES
 		$("#registro ul[data-role  = listview] a").tap(mc.start);
 		$("#registro div[data-role = footer] a").tap(fn.registar);
+		$("#nr1 ul[data-role = listview] a").tap(fn.seleccionarTipo);
+		$("#nr1 div[data-role = navbar] li").tap(fn.nr1Siguiente);
+		$("#nr2 div[data-role = footer] a").tap(fn.nr2EnviarRegistro);
+	},
+
+	nr2EnviarRegistro: function(){
+		// OBTENER DATOS PARA LA RESERVA
+		var tipoHabitacion  = $("#nr1").attr("th");
+		var numPersonas     = $("#resPer").val();
+		var numHabitaciones = $("#resHab").val();
+		var numDias         = $("#resDias").val();
+
+		if(conexion.estaConectado()){
+			// SI ESTA CONECTADO ENVIAR LA RESERVACION
+			alert("DISPOSITIVO CONECTADO");
+
+		}else{
+			// GUARDAR LAS RESERVAS EN EL DISPOSITIVO
+			almacen.guardarReserva(tipoHabitacion, numPersonas, numHabitaciones, numDias);
+		}
+	},
+
+	nr1Siguiente: function(){
+		if($(this).index() == 1){
+			if($("#nr1").attr("th") != undefined){
+				window.location.href = "#nr2";
+
+			}else{
+				alert("Error, es necesario seleccionar un tipo de habitación");
+			}
+		}
+	},
+
+	seleccionarTipo: function(){
+		$("#nr1 ul[data-role = listview] a").css("background-color", "");
+		$("#nr1").attr("th", $(this).text());
+		$(this).css("background-color", "#38C");
 	},
 
 	deviceready: function(){
-		document.addEventListener("deviceready", fn.init, false)
+		document.addEventListener("deviceready", fn.init, false);
 	},
 
 	estaRegistrado: function(){
@@ -29,19 +67,25 @@ var fn = {
 		var foto   = $("#fotoTomada").attr("rel");
 
 		// VALIDAR DATOS
-		if(typeof nombre !== "string"){
-			navigator.notification.alert("El nombre debe de ser valido");
+		try{
+			if(typeof nombre !== "string"){
+				throw new Error("El nombre no es valido");
+			}
+
+			if(Number.isNaN(Number(tel))){
+				throw new Error("El telefono no es valido");
+			}
+
+			if(email == '' || foto == undefined || foto == ''){
+				throw new Error("La foto y el email no son validos");
+			}
+
+			fn.enviarRegistro(nombre, email, tel, foto);
+
+		}catch(error){
+			// MANDAR ALERTA DEL ERROR
+			navigator.notification.alert(error);
 		}
-
-		// if(typeof tel !== "number"){
-		// 	navigator.notification.alert("El telefono debe de ser un número");	
-		// }
-
-		if(email == '' || foto == undefined || foto == ''){
-			navigator.notification.alert("El email y la foto son obligatorios");		
-		}
-
-		fn.enviarRegistro(nombre, email, tel, foto);
 	},
 
 	enviarRegistro: function(nombre, email, tel, foto){
@@ -69,3 +113,5 @@ var fn = {
 };
 
 $(fn.deviceready);
+
+//$(fn.init);

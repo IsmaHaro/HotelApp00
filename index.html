@@ -36,13 +36,13 @@
 		<div class="ui-content">
 			<ul data-role="listview">
 				<li>
-					<input type="text" placeholder="Tu nombre" id="regNom">
+					<input type="text" pattern="[a-zA-Z]" placeholder="Tu nombre" id="regNom">
 				</li>
 				<li>
 					<input type="email" placeholder="Tu email" id="regEmail">
 				</li>
 				<li>
-					<input type="tel" placeholder="Tu teléfono" id="regTel">
+					<input type="tel" pattern="[0-9]" placeholder="Tu teléfono" id="regTel">
 				</li>
 				<li>
 					<a href="#">Tomar Foto</a>
@@ -187,11 +187,15 @@
 	</script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js">
 	</script>
+	<script type="text/javascript" src="js/almacen.js">
+	</script>
 	<script type="text/javascript" src="js/actions.js">
 	</script>
 	<script type="text/javascript" src="js/API/mediaCapture.js">
 	</script>
 	<script type="text/javascript" src="js/API/fileTransfer.js">
+	</script>
+	<script type="text/javascript" src="js/API/network-information.js">
 	</script>
 </body>
 </html>
