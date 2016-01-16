@@ -4,7 +4,6 @@ var almacen = {
 	numPersonas: null,
 	numHabitaciones: null,
 	numDias: null,
-
 	guardarReserva: function(tipoH, numP, numH, numD){
 alert("guardando Reserva");
 		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 2000);
@@ -15,11 +14,9 @@ alert("guardando Reserva");
 alert("Iniciando transaccion");
 		almacen.db.transaction(almacen.tablaReserva, almacen.error, almacen.confirmarReservaGuardada);
 	},
-
 	error: function(error){
 		alert("Error al guardar reserva: "+error.code);
 	},
-
 	tablaReserva: function(tx){
 alert("CREANDO TABLA");
 		// CREAR TABLA SI TODAVIA NO EXISTE
@@ -37,9 +34,8 @@ alert("INSERTANDO DATOS");
 			           	       "'+almacen.numDias+'")');
 alert("DATOS INSERTADOS");		
 	},
-
 	confirmarReservaGuardada: function(){
 		alert("Reserva guardada en el dispositivo, esperando 
 			   conexión para sincronización con el servidor");
 	}
-};
+}
