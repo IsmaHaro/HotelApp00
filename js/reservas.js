@@ -6,7 +6,7 @@ var almacen = {
 	numDias: null,
 	guardarReserva: function(tipoH, numP, numH, numD){
 alert("guardando Reserva");
-		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 2000);
+		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
 		almacen.tipoHabitacion  = tipoH;
 		almacen.numPersonas     = numP;
 		almacen.numHabitaciones = numH;
@@ -35,7 +35,6 @@ alert("INSERTANDO DATOS");
 alert("DATOS INSERTADOS");		
 	},
 	confirmarReservaGuardada: function(){
-		alert("Reserva guardada en el dispositivo, esperando 
-			   conexión para sincronización con el servidor");
+		alert("Reserva guardada en el dispositivo");
 	}
 }
