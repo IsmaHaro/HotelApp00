@@ -20,10 +20,10 @@ alert("Iniciando transaccion");
 	tablaReserva: function(tx){
 alert("CREANDO TABLA");
 		// CREAR TABLA SI TODAVIA NO EXISTE
-		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas (id INTEGER PRIMARY KEY, tipoh,nump,numh,numd)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
 alert("INSERTANDO DATOS");
 		// INSERTAR DATOS EN LA TABLA DE "RESERVAS"
-		tx.executeSql('INSERT INTO reservas (tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
+		tx.executeSql('INSERT INTO reservas(tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
 alert('INSERT INTO reservas (tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
 	},
 	confirmarReservaGuardada: function(){
