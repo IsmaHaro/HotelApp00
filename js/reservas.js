@@ -15,7 +15,7 @@ alert("Iniciando transaccion");
 		almacen.db.transaction(almacen.tablaReserva, almacen.error, almacen.confirmarReservaGuardada);
 	},
 	error: function(error){
-		alert("Error al guardar reserva: "+error.code);
+		alert("Error al guardar reserva: "+error.message);
 	},
 	tablaReserva: function(tx){
 alert("CREANDO TABLA");
@@ -24,7 +24,7 @@ alert("CREANDO TABLA");
 alert("INSERTANDO DATOS");
 		// INSERTAR DATOS EN LA TABLA DE "RESERVAS"
 		tx.executeSql('INSERT INTO reservas (tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
-alert("DATOS INSERTADOS");
+alert('INSERT INTO reservas (tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
 	},
 	confirmarReservaGuardada: function(){
 		alert("Reserva guardada en el dispositivo");
