@@ -13,7 +13,8 @@ var almacen = {
 		almacen.db.transaction(almacen.tablaReserva, almacen.error, almacen.confirmarReservaGuardada);
 	},
 	error: function(error){
-		alert("Error al guardar reserva: "+error.message);
+console.log(error);
+		alert("Error: "+error.message);
 	},
 	tablaReserva: function(tx){
 		// CREAR TABLA SI TODAVIA NO EXISTE
@@ -65,25 +66,25 @@ var almacen = {
 	},
 	registrosHistorial: function(){
 		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
-		almacen.db.transaction(almacen.leerHistorial, almacen.error, null);
+		almacen.db.transaction(almacen.leerHistorial, almacen.error);
 	},
 	leerHistorial: function(tx){
-		tx.executeSql('SELECT * FROM historial', [], function(tx, res){
-			var cantidad  = res.rows.length;
-			var resultado = '<tr><td colspan="4">No hay reservas</td>';
+		tx.executeSql("SELECT * FROM historial",[],almacen.mostrarResultadosHistorial, null);
+	},
+	mostrarResultadosHistorial: function(tx,res){
+		var cantidad  = res.rows.length;
+		var resultado = '<tr><td colspan="4">No hay reservas</td>';
 
-			if(cantidad > 0){
-				resultado = '';
-				for(var i = 0; i < cantidad; i++){
-					var th = res.rows.item(i).tipoh;
-					var np = res.rows.item(i).nump;
-					var nh = res.rows.item(i).numh;
-					var nd = res.rows.item(i).numd;
-					resultado += "<tr><td>"+th+"</td><td>"+np+"</td><td>"+nh+"</td><td>"+td+"</td></tr>";
-				}
+		if(cantidad > 0){
+			resultado = '';
+			for(var i = 0; i < cantidad; i++){
+				var th = res.rows.item(i).tipoh;
+				var np = res.rows.item(i).nump;
+				var nh = res.rows.item(i).numh;
+				var nd = res.rows.item(i).numd;
+				resultado += '<tr><td>'+th+'</td><td>'+np+'</td><td>'+nh+'</td><td>'+nd+'</td></tr>';
 			}
-
-			$("#listaHistorial").html(resultado);
-		}, null);
+		}
+		$("#listaHistorial").html(resultado);
 	}
 };
