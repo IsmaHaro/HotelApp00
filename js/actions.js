@@ -47,14 +47,14 @@ var fn = {
 				personas: np,
 				dias: nd
 			}
-		}).done(function(respuesta)){
+		}).done(function(respuesta){
 			if( respuesta == 1){
 				// AGREGAR AL HISTORIAL
 				almacen.agregarHistorial(th, np, nh, nd);
 			}else{
 				alert("Error al guardar reserva en el servidor");
 			}
-		}
+		});
 	},
 
 	nr1Siguiente: function(){

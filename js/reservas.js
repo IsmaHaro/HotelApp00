@@ -55,7 +55,7 @@ var almacen = {
 					var nd = resultados.rows.item(i).numd;
 
 					fn.enviarReservas(th, np, nh, nd);
-					tx.executeSql('DELETE FROM reservas_pendientes WHERE id = "'+resultados.rows.item(i).id;+'"');
+					tx.executeSql('DELETE FROM reservas_pendientes WHERE id = "'+resultados.rows.item(i).id+'"');
 				}
 			}
 		});
@@ -63,4 +63,4 @@ var almacen = {
 	confirmarPendientes: function(){
 		alert("Sincronizado correctamente con el servidor");
 	}
-}
+};
