@@ -35,6 +35,10 @@ var fn = {
 			// GUARDAR LAS RESERVAS EN EL DISPOSITIVO
 			almacen.guardarReserva(tipoHabitacion, numPersonas, numHabitaciones, numDias);
 		}
+
+		$("#nr1 ul[data-role = listview] a").css("background-color", "");
+		$("#nr1").removeAttr("th");
+		window.location.href= "#home";
 	},
 
 	sincronizarReservasPendientes: function(){

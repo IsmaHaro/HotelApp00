@@ -13,14 +13,15 @@
         <name>HotelApp</name>
 
         <description>
-            Aplicación de prueba para hoteles. 
+            Aplicación de prueba para hoteles.
         </description>
 
         <author href="#" email="ismaharo18@gmail.com">
             Ismael Haro
         </author>
-        
+
         <icon src="img/icon.png" />
+        <splash src="img/splash.png" />
 
         <gap:plugin name="org.apache.cordova.dialogs" />
         <gap:plugin name="org.apache.cordova.media-capture" />
