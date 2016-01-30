@@ -65,7 +65,7 @@ var almacen = {
 	},
 	registrosHistorial: function(){
 		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
-		almacen.db.transaction(almacen.leerHistorial, almacen.error);
+		almacen.db.transaction(almacen.leerHistorial, almacen.error, null);
 	},
 	leerHistorial: function(tx){
 		tx.executeSql('SELECT * FROM historial', [], function(tx, res){
