@@ -11,6 +11,9 @@ var fn = {
 		$("#nr1 ul[data-role = listview] a").tap(fn.seleccionarTipo);
 		$("#nr1 div[data-role = navbar] li").tap(fn.nr1Siguiente);
 		$("#nr2 div[data-role = footer] a").tap(fn.nr2EnviarRegistro);
+
+		// ASOCIAR EVENTO A LA CONEXION
+		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 	},
 
 	nr2EnviarRegistro: function(){
@@ -22,12 +25,35 @@ var fn = {
 
 		if(conexion.estaConectado()){
 			// SI ESTA CONECTADO ENVIAR LA RESERVACION
-alert("DISPOSITIVO CONECTADO");
-
+			fn.enviarReservas(tipoHabitacion, numPersonas, numHabitaciones, numDias);
 		}else{
 			// GUARDAR LAS RESERVAS EN EL DISPOSITIVO
-alert("DISPOSITIVO DESCONECTADO");
 			almacen.guardarReserva(tipoHabitacion, numPersonas, numHabitaciones, numDias);
+		}
+	},
+
+	sincronizarReservasPendientes: function(){
+		// ALMACEN DEBE DE ENVIAR LAS RESERVAS PENDIENTES
+		almacen.leerPendientes();
+	},
+
+	enviarReservas: function(th, np, nh, nd){
+		$.ajax({
+			type: "POST",
+			url: "http://carlos.igitsoft.com/apps/test.php",
+			data: {
+				tipo: th,
+				habitaciones: nh,
+				personas: np,
+				dias: nd
+			}
+		}).done(function(respuesta)){
+			if( respuesta == 1){
+				// AGREGAR AL HISTORIAL
+				almacen.agregarHistorial(th, np, nh, nd);
+			}else{
+				alert("Error al guardar reserva en el servidor");
+			}
 		}
 	},
 

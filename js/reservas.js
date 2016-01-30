@@ -5,30 +5,62 @@ var almacen = {
 	numHabitaciones: null,
 	numDias: null,
 	guardarReserva: function(tipoH, numP, numH, numD){
-alert("guardando Reserva");
 		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
 		almacen.tipoHabitacion  = tipoH;
 		almacen.numPersonas     = numP;
 		almacen.numHabitaciones = numH;
 		almacen.numDias         = numD;
-alert("Iniciando transaccion");
 		almacen.db.transaction(almacen.tablaReserva, almacen.error, almacen.confirmarReservaGuardada);
 	},
 	error: function(error){
 		alert("Error al guardar reserva: "+error.message);
 	},
 	tablaReserva: function(tx){
-alert("CREANDO TABLA");
 		// CREAR TABLA SI TODAVIA NO EXISTE
-		tx.executeSql('DROP TABLE IF EXISTS reservas');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
-alert("INSERTANDO DATOS");
-alert('CREATE TABLE IF NOT EXISTS reservas (id INTEGER PRIMARY KEY AUTOINCREMENT, tipoh, nump, numh, numd)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas_pendientes (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
 		// INSERTAR DATOS EN LA TABLA DE "RESERVAS"
-		tx.executeSql('INSERT INTO reservas(tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
-alert('INSERT INTO reservas (tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
+		tx.executeSql('INSERT INTO reservas_pendientes(tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
 	},
 	confirmarReservaGuardada: function(){
 		alert("Reserva guardada en el dispositivo");
+	},
+	agregarHistorial: function(th, np, nh, nd){
+		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
+		almacen.tipoHabitacion  = th;
+		almacen.numPersonas     = np;
+		almacen.numHabitaciones = nh;
+		almacen.numDias         = nd;
+		almacen.db.transaction(almacen.tablaHistorial, almacen.error, almacen.confirmarHistorial);
+	},
+	tablaHistorial: function(tx){
+		tx.executeSql('CREATE TABLE IF NOT EXISTS historial (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
+		tx.executeSql('INSERT INTO historial (tipoh, nump, numh, numd) VALUES("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
+	},
+	confirmarHistorial: function(){
+		alert("Reserva guardada en el historial");
+	},
+	leerPendientes: function(){
+		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
+		almacen.db.transaction(almacen.enviarPendientes, almacen.error, alamcen.confirmarPendientes);
+	},
+	enviarPendientes: function(tx){
+		tx.executeSql('SELECT * FROM reservas_pendientes', [], function(tx, resultados){
+			var cantidad = resultados.rows.length;
+
+			if(cantidad > 0){
+				for(var i = 0; i < cantidad; i++){
+					var th = resultados.rows.item(i).tipoh;
+					var np = resultados.rows.item(i).nump;
+					var nh = resultados.rows.item(i).numh;
+					var nd = resultados.rows.item(i).numd;
+
+					fn.enviarReservas(th, np, nh, nd);
+					tx.executeSql('DELETE FROM reservas_pendientes WHERE id = "'+resultados.rows.item(i).id;+'"');
+				}
+			}
+		});
+	},
+	confirmarPendientes: function(){
+		alert("Sincronizado correctamente con el servidor");
 	}
 }
