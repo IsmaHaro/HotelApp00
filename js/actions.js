@@ -38,7 +38,7 @@ var fn = {
 
 		$("#nr1 ul[data-role = listview] a").css("background-color", "");
 		$("#nr1").removeAttr("th");
-		$("#nr2 select").prop("selectedIndex",1)
+		$("#nr2 select").prop("selectedIndex",1);
 		window.location.href= "#home";
 	},
 
