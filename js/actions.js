@@ -18,7 +18,7 @@ var fn = {
 	},
 
 	mostrarHistorial: function(){
-
+		almacen.registrosHistorial();
 	},
 
 	nr2EnviarRegistro: function(){
