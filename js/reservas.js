@@ -84,6 +84,6 @@ var almacen = {
 			}
 
 			$("#listaHistorial").html(resultado);
-		});
+		}, null);
 	}
 };
