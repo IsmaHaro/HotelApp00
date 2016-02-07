@@ -12,6 +12,7 @@ var geolocation = {
 	},
 
 	getPosition: function(){
+alert("obteniendo ubicacion");
 		navigator.geolocation.getCurrentPosition(geolocation.exito, geolocation.error);
 	}
 };
