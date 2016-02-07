@@ -46,7 +46,9 @@ console.log(error);
 	},
 	enviarPendientes: function(tx){
 alert("leyendo pendientes");
-		tx.executeSql('SELECT * FROM reservas_pendientes', [], procesarPendientes, null);
+		// CREAR TABLA SI TODAVIA NO EXISTE
+		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas_pendientes (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
+		tx.executeSql('SELECT * FROM reservas_pendientes', [], almacen.procesarPendientes, almacen.error);
 	},
 	procesarPendientes: function(tx, resultados){
 	var cantidad = resultados.rows.length;
