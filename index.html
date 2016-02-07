@@ -21,6 +21,7 @@
 			<ul data-role="listview" data-insert="true">
 				<li><a href="#nr1">Nueva Reserva</a></li>
 				<li><a id="boton-historial" href="#historial">Historial</a></li>
+				<li><a id="boton-pendientes" href="#pendientes">Pendientes</a></li>
 				<li><a href="#privacidad">Privacidad</a></li>
 			</ul>
 		</div>
@@ -197,6 +198,27 @@
 					</tr>
 				</thead>
 				<tbody id="listaHistorial">
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div data-role="page" id="pendientes">
+		<div data-role="header">
+			<h1>Pendientes</h1>
+			<a href="#" data-rel="back">Atrás</a>
+		</div>
+		<div class="ui-content">
+			<table  class="tabla-historial ui-responsive">
+				<thead>
+					<tr>
+						<th>Tipo de Habitación</th>
+						<th>Número de Personas</th>
+						<th>Número de Habitaciones</th>
+						<th>Número de Dias</th>
+					</tr>
+				</thead>
+				<tbody id="listaPendientes">
 				</tbody>
 			</table>
 		</div>

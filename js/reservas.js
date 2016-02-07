@@ -42,7 +42,7 @@ console.log(error);
 	},
 	leerPendientes: function(){
 		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
-		almacen.db.transaction(almacen.enviarPendientes, almacen.error, alamcen.confirmarPendientes);
+		almacen.db.transaction(almacen.enviarPendientes, almacen.error, almacen.confirmarPendientes);
 	},
 	enviarPendientes: function(tx){
 alert("leyendo pendientes");
@@ -90,5 +90,31 @@ alert("FIN Procesado de pendientes");
 			}
 		}
 		$("#listaHistorial").html(resultado);
+	},
+
+	registrosPendientes: function(){
+		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
+		almacen.db.transaction(almacen.leerP, almacen.error);
+	},
+
+	leerP: function(tx){
+		tx.executeSql("SELECT * FROM reservas_pendientes",[], almacen.mostrarResutadosPendientes, null);
+	},
+
+	mostrarResutadosPendientes: function(tx,res){
+		var cantidad  = res.rows.length;
+		var resultado = '<tr><td colspan="4">No hay pendientes</td>';
+
+		if(cantidad > 0){
+			resultado = '';
+			for(var i = 0; i < cantidad; i++){
+				var th = res.rows.item(i).tipoh;
+				var np = res.rows.item(i).nump;
+				var nh = res.rows.item(i).numh;
+				var nd = res.rows.item(i).numd;
+				resultado += '<tr><td>'+th+'</td><td>'+np+'</td><td>'+nh+'</td><td>'+nd+'</td></tr>';
+			}
+		}
+		$("#listaPendientes").html(resultado);
 	}
 };
