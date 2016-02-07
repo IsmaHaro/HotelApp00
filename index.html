@@ -22,12 +22,24 @@
 				<li><a href="#nr1">Nueva Reserva</a></li>
 				<li><a id="boton-historial" href="#historial">Historial</a></li>
 				<li><a id="boton-pendientes" href="#pendientes">Pendientes</a></li>
+				<li><a id="boton-ubicacion" href="#ubicacion">Ubicación</a></li>
 				<li><a href="#privacidad">Privacidad</a></li>
 			</ul>
 		</div>
 		<div data-role="footer" data-position="fixed">
 			<span>Todos los derechos reservados</span>
 			<a href="#nosotros">Nosotros</a>
+		</div>
+	</div>
+
+	<div data-role="page" id="ubicacion">
+		<div data-role="header">
+			<h1>Ubicación</h1>
+			<a href="#" data-rel="back">Atrás</a>
+		</div>
+		<div class="ui-content">
+			<div id="canvas">
+			</div>
 		</div>
 	</div>
 
@@ -226,6 +238,7 @@
 
 	<script type="text/javascript" src="phonegap.js">
 	</script>
+	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
 	<script type="text/javascript" src="js/jquery-1.11.3.min.js">
 	</script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js">

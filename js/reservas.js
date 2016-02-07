@@ -13,7 +13,7 @@ var almacen = {
 		almacen.db.transaction(almacen.tablaReserva, almacen.error, almacen.confirmarReservaGuardada);
 	},
 	error: function(error){
-console.log(error);
+//console.log(error);
 		alert("Error: "+error.message);
 	},
 	tablaReserva: function(tx){
@@ -38,21 +38,21 @@ console.log(error);
 		tx.executeSql('INSERT INTO historial (tipoh, nump, numh, numd) VALUES("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
 	},
 	confirmarHistorial: function(){
-		alert("Reserva guardada en el historial");
+		//alert("Reserva guardada en el historial");
 	},
 	leerPendientes: function(){
 		almacen.db = window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
 		almacen.db.transaction(almacen.enviarPendientes, almacen.error, almacen.confirmarPendientes);
 	},
 	enviarPendientes: function(tx){
-alert("leyendo pendientes");
+//alert("leyendo pendientes");
 		// CREAR TABLA SI TODAVIA NO EXISTE
 		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas_pendientes (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
 		tx.executeSql('SELECT * FROM reservas_pendientes', [], almacen.procesarPendientes, almacen.error);
 	},
 	procesarPendientes: function(tx, resultados){
 	var cantidad = resultados.rows.length;
-alert("procesando pendientes");
+//alert("procesando pendientes");
 		if(cantidad > 0){
 			for(var i = 0; i < cantidad; i++){
 				var th = resultados.rows.item(i).tipoh;
@@ -64,7 +64,7 @@ alert("procesando pendientes");
 				tx.executeSql('DELETE FROM reservas_pendientes WHERE id = "'+resultados.rows.item(i).id+'"');
 			}
 		}
-alert("FIN Procesado de pendientes");
+//alert("FIN Procesado de pendientes");
 	},
 
 	confirmarPendientes: function(){

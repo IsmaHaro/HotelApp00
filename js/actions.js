@@ -13,9 +13,30 @@ var fn = {
 		$("#nr2 div[data-role = footer] a").tap(fn.nr2EnviarRegistro);
 		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-pendientes").tap(fn.mostrarPendientes);
+		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
 
 		// ASOCIAR EVENTO A LA CONEXION
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
+	},
+
+	mostrarUbicacion: function(){
+		geolocation.getPosition();
+
+		var latYlong = new google.maps.LatLng(geolocation.latitud, geolocation.longitud);
+
+		var options = {
+			zoom: 13,
+			center: latYlong,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		var map =  new google.maps.Map(document.getElementById("canvas"), options);
+
+		var marker = new google.maps.Marker({
+			position: latYlong,
+			map: map,
+			title: "Mi ubicación"
+		});
 	},
 
 	mostrarHistorial: function(){
@@ -48,7 +69,7 @@ var fn = {
 	},
 
 	sincronizarReservasPendientes: function(){
-alert("Se detecto que el dispositivo esta online");
+//alert("Se detecto que el dispositivo esta online");
 		// ALMACEN DEBE DE ENVIAR LAS RESERVAS PENDIENTES
 		almacen.leerPendientes();
 	},
