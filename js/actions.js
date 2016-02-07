@@ -2,7 +2,7 @@ var fn = {
 	init: function(){
 
 		if(!fn.estaRegistrado()){
-			window.location.href = "#registro";
+//			window.location.href = "#registro";
 		}
 
 		// BOTONES
@@ -38,11 +38,12 @@ var fn = {
 
 		$("#nr1 ul[data-role = listview] a").css("background-color", "");
 		$("#nr1").removeAttr("th");
-		$("#nr2 select").prop("selectedIndex",1);
+		$("#nr2 select").prop("selectedIndex", 0).selectmenu("refresh", true);
 		window.location.href= "#home";
 	},
 
 	sincronizarReservasPendientes: function(){
+alert("Se detecto que el dispositivo esta online");
 		// ALMACEN DEBE DE ENVIAR LAS RESERVAS PENDIENTES
 		almacen.leerPendientes();
 	},
@@ -149,6 +150,6 @@ var fn = {
 	}
 };
 
-$(fn.deviceready);
+//$(fn.deviceready);
 
-//$(fn.init);
+$(fn.init);
