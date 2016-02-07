@@ -21,16 +21,16 @@ var fn = {
 
 	mostrarUbicacion: function(){
 		geolocation.getPosition();
-
+alert(geolocation.latitud + " " + geolocation.longitud )
 		var latYlong = new google.maps.LatLng(geolocation.latitud, geolocation.longitud);
 
 		var options = {
-			zoom: 13,
+			zoom: 12,
 			center: latYlong,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 
-		var map =  new google.maps.Map(document.getElementById("canvas"), options);
+		var map = new google.maps.Map(document.getElementById("canvas"), options);
 
 		var marker = new google.maps.Marker({
 			position: latYlong,
