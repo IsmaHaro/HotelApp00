@@ -46,7 +46,7 @@ console.log(error);
 	},
 	enviarPendientes: function(tx){
 alert("leyendo pendientes");
-		tx.executeSql('SELECT * FROM reservas_pendientes', [], procesarPendientes);
+		tx.executeSql('SELECT * FROM reservas_pendientes', [], procesarPendientes, null);
 	},
 	procesarPendientes: function(tx, resultados){
 	var cantidad = resultados.rows.length;
