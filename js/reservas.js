@@ -45,22 +45,26 @@ console.log(error);
 		almacen.db.transaction(almacen.enviarPendientes, almacen.error, alamcen.confirmarPendientes);
 	},
 	enviarPendientes: function(tx){
-		tx.executeSql('SELECT * FROM reservas_pendientes', [], function(tx, resultados){
-			var cantidad = resultados.rows.length;
-
-			if(cantidad > 0){
-				for(var i = 0; i < cantidad; i++){
-					var th = resultados.rows.item(i).tipoh;
-					var np = resultados.rows.item(i).nump;
-					var nh = resultados.rows.item(i).numh;
-					var nd = resultados.rows.item(i).numd;
-
-					fn.enviarReservas(th, np, nh, nd);
-					tx.executeSql('DELETE FROM reservas_pendientes WHERE id = "'+resultados.rows.item(i).id+'"');
-				}
-			}
-		});
+alert("leyendo pendientes");
+		tx.executeSql('SELECT * FROM reservas_pendientes', [], procesarPendientes);
 	},
+	procesarPendientes: function(tx, resultados){
+	var cantidad = resultados.rows.length;
+alert("procesando pendientes");
+		if(cantidad > 0){
+			for(var i = 0; i < cantidad; i++){
+				var th = resultados.rows.item(i).tipoh;
+				var np = resultados.rows.item(i).nump;
+				var nh = resultados.rows.item(i).numh;
+				var nd = resultados.rows.item(i).numd;
+
+				fn.enviarReservas(th, np, nh, nd);
+				tx.executeSql('DELETE FROM reservas_pendientes WHERE id = "'+resultados.rows.item(i).id+'"');
+			}
+		}
+alert("FIN Procesado de pendientes");
+	},
+
 	confirmarPendientes: function(){
 		alert("Sincronizado correctamente con el servidor");
 	},
@@ -69,7 +73,7 @@ console.log(error);
 		almacen.db.transaction(almacen.leerHistorial, almacen.error);
 	},
 	leerHistorial: function(tx){
-		tx.executeSql("SELECT * FROM reservas_pendientes",[],almacen.mostrarResultadosHistorial, null);
+		tx.executeSql("SELECT * FROM historial",[],almacen.mostrarResultadosHistorial, null);
 	},
 	mostrarResultadosHistorial: function(tx,res){
 		var cantidad  = res.rows.length;
