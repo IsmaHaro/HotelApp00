@@ -1,6 +1,6 @@
 var geolocation = {
-	latitud = null,
-	longitud = null,
+	latitud: null,
+	longitud: null,
 
 	error: function(error){
 		alert("Error: "+error.message);
