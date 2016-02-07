@@ -69,7 +69,7 @@ console.log(error);
 		almacen.db.transaction(almacen.leerHistorial, almacen.error);
 	},
 	leerHistorial: function(tx){
-		tx.executeSql("SELECT * FROM historial",[],almacen.mostrarResultadosHistorial, null);
+		tx.executeSql("SELECT * FROM reservas_pendientes",[],almacen.mostrarResultadosHistorial, null);
 	},
 	mostrarResultadosHistorial: function(tx,res){
 		var cantidad  = res.rows.length;
