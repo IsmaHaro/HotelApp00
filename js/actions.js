@@ -2,7 +2,7 @@ var fn = {
 	init: function(){
 
 		if(!fn.estaRegistrado()){
-//			window.location.href = "#registro";
+			window.location.href = "#registro";
 		}
 
 		// BOTONES
@@ -11,8 +11,7 @@ var fn = {
 		$("#nr1 ul[data-role = listview] a").tap(fn.seleccionarTipo);
 		$("#nr1 div[data-role = navbar] li").tap(fn.nr1Siguiente);
 		$("#nr2 div[data-role = footer] a").tap(fn.nr2EnviarRegistro);
-		//$("#boton-historial").tap(fn.mostrarHistorial);
-		$("#boton-historial").tap(fn.sincronizarReservasPendientes);
+		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-pendientes").tap(fn.mostrarPendientes);
 
 		// ASOCIAR EVENTO A LA CONEXION
@@ -156,6 +155,6 @@ alert("Se detecto que el dispositivo esta online");
 	}
 };
 
-//$(fn.deviceready);
+$(fn.deviceready);
 
-$(fn.init);
+//$(fn.init);
