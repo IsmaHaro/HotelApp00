@@ -7,6 +7,7 @@ var geolocation = {
 	},
 
 	exito: function(position){
+alert("Position: "+position.coords.latitude+" "+position.coords.latitude);
 		geolocation.latitud = position.coords.latitude;
 		geolocation.longitud = position.coords.longitude;
 	},
