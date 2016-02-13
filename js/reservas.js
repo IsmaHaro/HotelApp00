@@ -14,6 +14,7 @@ var almacen = {
 	},
 	error: function(error){
 //console.log(error);
+		$.mobile.loading("hide");
 		alert("Error: "+error.message);
 	},
 	tablaReserva: function(tx){
@@ -23,6 +24,7 @@ var almacen = {
 		tx.executeSql('INSERT INTO reservas_pendientes(tipoh, nump, numh, numd) VALUES ("'+almacen.tipoHabitacion+'","'+almacen.numPersonas+'","'+almacen.numHabitaciones+'","'+almacen.numDias+'")');
 	},
 	confirmarReservaGuardada: function(){
+		$.mobile.loading("hide");
 		alert("Reserva guardada en el dispositivo");
 	},
 	agregarHistorial: function(th, np, nh, nd){
@@ -117,6 +119,8 @@ var almacen = {
 				resultado += '<tr><td>'+th+'</td><td>'+np+'</td><td>'+nh+'</td><td>'+nd+'</td></tr>';
 			}
 		}
+
+		$.mobile.loading("hide");
 		$("#listaPendientes").html(resultado);
 	}
 };

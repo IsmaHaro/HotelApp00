@@ -17,6 +17,9 @@ var fn = {
 
 		// ASOCIAR EVENTO A LA CONEXION
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
+
+		// PONER FECHA
+		fn.ponerFecha();
 	},
 
 	mostrarUbicacion: function(){
@@ -28,6 +31,7 @@ var fn = {
 	},
 
 	mostrarPendientes: function(){
+		$.mobile.loading("show");
 		almacen.registrosPendientes();
 	},
 
@@ -37,6 +41,8 @@ var fn = {
 		var numPersonas     = $("#resPer").val();
 		var numHabitaciones = $("#resHab").val();
 		var numDias         = $("#resDias").val();
+
+		$.mobile.loading("show");
 
 		if(conexion.estaConectado()){
 			// SI ESTA CONECTADO ENVIAR LA RESERVACION
@@ -72,6 +78,7 @@ var fn = {
 			if( respuesta == 1){
 				// AGREGAR AL HISTORIAL
 				almacen.agregarHistorial(th, np, nh, nd);
+				$.mobile.loading("hide");
 			}else{
 				alert("Error al guardar reserva en el servidor");
 			}
@@ -128,6 +135,7 @@ var fn = {
 				throw new Error("La foto y el email no son validos");
 			}
 
+			$.mobile.loading("show");
 			fn.enviarRegistro(nombre, email, tel, foto);
 
 		}catch(error){
@@ -146,6 +154,7 @@ var fn = {
 				tel: tel
 			},
 			error: function(){
+				$.mobile.loading("hide");
 				alert("Error de conexion con AJAX");
 			}
 
@@ -156,7 +165,28 @@ var fn = {
 			}else{
 				navigator.notification.alert("Error al enviar datos al servidor, Mensaje: "+msg);
 			}
+			$.mobile.loading("hide");
 		});
+	},
+
+	ponerFecha: function(){
+		var hoy = new Date();
+
+		var dia  = hoy.getDate();
+		var mes  = hoy.getMonth()+1;
+		var anio = hoy.getFullYear();
+
+		if(dia < 10){
+			dia = "0"+dia;
+		}
+
+		if(mes < 10){
+			mes = "0"+mes;
+		}
+
+		hoy = dia+" / "+mes+" / "+anio;
+
+		$(".fecha").html(hoy);
 	}
 };
 
