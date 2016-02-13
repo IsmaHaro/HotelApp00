@@ -236,9 +236,35 @@
 		</div>
 	</div>
 
+	<script type="text/javascript">
+		function mapa(){
+			geolocation.getPosition();
+			var latYlong = new google.maps.LatLng(geolocation.latitud, geolocation.longitud);
+			//var latYlong = new google.maps.LatLng(-34.397,150.644);
+
+			var options = {
+				zoom: 13,
+				center: latYlong,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+			var map = new google.maps.Map(document.getElementById("canvas"), options);
+
+			var marker = new google.maps.Marker({
+				position: latYlong,
+				map: map,
+				title: "Mi ubicación"
+			});
+		}
+	</script>
+
 	<script type="text/javascript" src="phonegap.js">
 	</script>
-	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+
+	<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKrZkh24ZjiYdD0BS445a5NjNEtn6oBeg&callback=mapa">
+    </script>
+	
 	<script type="text/javascript" src="js/jquery-1.11.3.min.js">
 	</script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js">

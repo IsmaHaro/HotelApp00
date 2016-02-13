@@ -20,24 +20,7 @@ var fn = {
 	},
 
 	mostrarUbicacion: function(){
-alert("UBICACION")		
-		geolocation.getPosition();
-alert(geolocation.latitud + " " + geolocation.longitud);
-		var latYlong = new google.maps.LatLng(geolocation.latitud, geolocation.longitud);
-
-		var options = {
-			zoom: 12,
-			center: latYlong,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
-
-		var map = new google.maps.Map(document.getElementById("canvas"), options);
-
-		var marker = new google.maps.Marker({
-			position: latYlong,
-			map: map,
-			title: "Mi ubicación"
-		});
+		location.reload();
 	},
 
 	mostrarHistorial: function(){
