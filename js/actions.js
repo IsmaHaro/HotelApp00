@@ -20,7 +20,7 @@ var fn = {
 	},
 
 	mostrarUbicacion: function(){
-		location.reload();
+		//location.reload();
 	},
 
 	mostrarHistorial: function(){
@@ -160,6 +160,6 @@ var fn = {
 	}
 };
 
-$(fn.deviceready);
+//$(fn.deviceready);
 
-//$(fn.init);
+$(fn.init);
