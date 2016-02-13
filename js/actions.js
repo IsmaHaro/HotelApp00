@@ -20,12 +20,6 @@ var fn = {
 	},
 
 	mostrarUbicacion: function(){
-		var map;
-
-		function mapa(){
-			geolocation.getPosition();
-		}
-
 		$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyCKrZkh24ZjiYdD0BS445a5NjNEtn6oBeg&callback=mapa');
 	},
 
