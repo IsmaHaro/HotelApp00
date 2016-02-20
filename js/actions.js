@@ -14,6 +14,10 @@ var fn = {
 		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-pendientes").tap(fn.mostrarPendientes);
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
+		$("#boton-galeria").tap(fn.llenarGaleria);
+
+		// FOTOS GALERIA
+		$(".foto-galeria").tap(fn.mostrarFotoGaleria);
 
 		// ASOCIAR EVENTO A LA CONEXION
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
@@ -187,7 +191,46 @@ var fn = {
 		hoy = dia+" / "+mes+" / "+anio;
 
 		$(".fecha").html(hoy);
-	}
+	},
+
+llenarGaleria: function(){
+            $.ajax({
+					type: "POST",
+					url: "http://ismaelharo.com.mx/phonegap/fotos.php",
+                data:{
+                    
+                },
+			error: function(){
+				alert("Error de conexion con AJAX");
+			}
+
+		}).
+           done(function(msg){
+            //alert(msg);
+            var obj = jQuery.parseJSON(msg);
+            $impar=1;
+                Object.keys(obj).forEach(function(key) {
+                    //console.log(key, obj[key]);
+                    if($impar==1){
+                     $("#gallery" ).append("<div class='ui-block-a'><img class='foto-galeria' src='"+obj[key]+"'/></div>" );    
+                     $impar=0;
+                }
+                else{
+                    $("#gallery" ).append( "<div class='ui-block-b'><img class='foto-galeria' src='"+obj[key]+"'/></div>" );    
+                    $impar=1;
+                }
+                });
+		});
+        
+    },
+
+    mostrarFotoGaleria: function(){
+		var source = $(this);
+
+		$("#foto").html(source);
+
+		$.mobile.changePage($("#foto-individual"));
+    }
 };
 
 $(fn.deviceready);
