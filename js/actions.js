@@ -16,9 +16,6 @@ var fn = {
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
 		$("#boton-galeria").tap(fn.llenarGaleria);
 
-		// FOTOS GALERIA
-		$(".foto-galeria").tap(fn.mostrarFotoGaleria);
-
 		// ASOCIAR EVENTO A LA CONEXION
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 
@@ -209,25 +206,26 @@ llenarGaleria: function(){
             //alert(msg);
             var obj = jQuery.parseJSON(msg);
             $impar=1;
-                Object.keys(obj).forEach(function(key) {
-                    //console.log(key, obj[key]);
-                    if($impar==1){
-                     $("#gallery" ).append("<div class='ui-block-a'><img class='foto-galeria' src='"+obj[key]+"'/></div>" );    
-                     $impar=0;
-                }
-                else{
-                    $("#gallery" ).append( "<div class='ui-block-b'><img class='foto-galeria' src='"+obj[key]+"'/></div>" );    
-                    $impar=1;
-                }
-                });
+            Object.keys(obj).forEach(function(key) {
+	            //console.log(key, obj[key]);
+	            if($impar==1){
+	                 $("#gallery" ).append("<div class='ui-block-a'><img class='foto-galeria' src='"+obj[key]+"'/></div>" );    
+	                 $impar=0;
+	            }
+	            else{
+	                $("#gallery" ).append( "<div class='ui-block-b'><img class='foto-galeria' src='"+obj[key]+"'/></div>" );    
+	                $impar=1;
+	            }
+            });
+
+	        // FOTOS GALERIA
+			$(".foto-galeria").tap(fn.mostrarFotoGaleria);
 		});
         
     },
 
     mostrarFotoGaleria: function(){
-		var source = $(this);
-
-		$("#foto").html(source);
+		$("#foto").html($(this).clone());
 
 		$.mobile.changePage($("#foto-individual"));
     }
